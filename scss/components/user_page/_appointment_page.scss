@@ -1,0 +1,180 @@
+@use '../../abstracts' as *;
+
+.appointment__page {
+  .appointments__container {
+    .appointment__item {
+      @include display-flex($dir: column, $gap: 0.5rem);
+
+      & > * {
+        width: 100%;
+        color: var(--ntrl-clr-300);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--ntrl-clr-100);
+      }
+
+      .header {
+        @include display-flex($x: space-between);
+
+        &__body-text {
+          .appointment-id {
+            font-size: 0.875rem;
+            color: hsl(0, 0%, 38%, 0.7);
+            margin-bottom: 0.5rem;
+          }
+
+          .appointment-date {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+
+          .appointment-time {
+            color: var(--pr-clr-300);
+          }
+        }
+
+        &__cancel-btn {
+          color: var(--ntrl-clr-100);
+          padding: 0.875rem 1rem;
+          border-radius: 0.25rem;
+          background-color: var(--pr-clr-100);
+          cursor: pointer;
+
+          &:hover {
+            background-color: var(--pr-clr-150);
+          }
+        }
+      }
+
+      .appointment__details {
+        @include display-flex($dir: column);
+
+        .detail {
+          width: 100%;
+          @include display-flex($dir: column, $gap: 0.75rem, $y: flex-start);
+
+          &:not(:first-child) {
+            padding-top: 1.125rem;
+          }
+
+          &:not(:last-child) {
+            padding-bottom: 1.125rem;
+            border-bottom: 1px solid hsl(0, 0%, 38%, 0.2);
+          }
+
+          &__header {
+            font-size: 1.125rem;
+            font-weight: bold;
+          }
+
+          &__content {
+            font-size: 0.875rem;
+          }
+        }
+      }
+
+      .modal.cancel-appointment {
+        @include display-flex($dir: column, $gap: 0.5rem);
+        position: absolute;
+        width: 100%;
+        min-height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: hsl(0, 0%, 100%, 0.3);
+        backdrop-filter: blur(3px);
+        transition: 100ms ease-in-out;
+
+        & > * {
+          width: 26rem;
+          font-size: 0.875rem;
+          color: var(--ntrl-clr-300);
+        }
+
+        .modal__header {
+          text-align: center;
+          padding: 1.5rem;
+          border-radius: 0.5rem;
+          border: 1px solid var(--pr-clr-100);
+          background-color: var(--ntrl-clr-100);
+
+          h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1;
+          }
+          p {
+            font-style: italic;
+            color: var(--pr-clr-100);
+            margin-top: 0.8rem;
+          }
+        }
+
+        .modal__buttons {
+          @include display-flex($dir: column, $gap: 0.5rem);
+
+          & > * {
+            width: 100%;
+            color: var(--ntrl-clr-100);
+            text-align: center;
+            border-radius: 0.5rem;
+            cursor: pointer;
+          }
+
+          .confirm-cancel {
+            padding: 0.875rem 1rem;
+            background-color: var(--pr-clr-100);
+            &:hover {
+              background-color: var(--pr-clr-150);
+            }
+          }
+
+          #exitButton {
+            padding: 0.875rem 1rem;
+            background-color: var(--pr-clr-300);
+            &:hover {
+              background-color: var(--pr-clr-350);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 820px
+@media screen and (max-width: 51.25rem) {
+  .appointment__page {
+    .appointments__container {
+      .appointment__item {
+        @include display-flex($dir: column, $gap: 0.5rem);
+
+        & > * {
+          width: 100%;
+          color: var(--ntrl-clr-300);
+          padding: 1.5rem;
+          border-radius: 0.5rem;
+          background-color: var(--ntrl-clr-100);
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+
+          button {
+            align-self: flex-end;
+            justify-self: flex-end;
+          }
+        }
+
+        .modal.cancel-appointment {
+          // width: 100%;
+          & > * {
+            width: 20rem;
+          }
+        }
+      }
+    }
+  }
+}

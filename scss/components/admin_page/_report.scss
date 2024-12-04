@@ -1,0 +1,130 @@
+@use '../../abstracts' as *;
+
+.dashboard-report {
+  @include display-flex($y: flex-start);
+  &-container {
+    @include display-flex($dir: column, $y: flex-start, $gap: 1rem);
+    width: 50rem;
+    padding: 2rem;
+    margin-block: 2rem;
+
+    outline: var(--d);
+
+    .report-header {
+      width: 100%;
+      @include display-flex($x: space-between);
+
+      .heading {
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: -1px;
+        color: var(--pr-clr-300);
+      }
+    }
+
+    .print-report-btn {
+      color: var(--ntrl-clr-100);
+      padding: 0.7rem 1rem;
+      border-radius: 0.5rem;
+      background-color: var(--pr-clr-300) !important;
+    }
+
+    .table-container {
+      width: 100%;
+      @include display-flex($dir: column, $y: flex-start, $gap: 1rem);
+
+      & > * {
+        width: 100%;
+        @include display-flex($dir: column, $y: flex-start, $gap: 0.5rem);
+
+        .table-header {
+          font-size: 1rem;
+          font-weight: bold;
+          color: var(--ntrl-clr-300);
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 1px solid var(--ntrl-clr-300);
+
+          th,
+          td {
+            color: var(--ntrl-clr-300);
+            text-align: center;
+            padding: 0.5rem;
+            border: 1px solid var(--ntrl-clr-300);
+          }
+
+          thead {
+            tr {
+              th {
+                font-weight: bold;
+                color: var(--ntrl-clr-350);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .performance-summary {
+      width: 100%;
+      @include display-flex(
+        $dir: column,
+        $y: flex-start,
+        $x: space-between,
+        $gap: 1rem
+      );
+
+      .chart-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--ntrl-clr-300);
+      }
+
+      .charts-container {
+        width: 100%;
+        @include display-flex($x: space-between, $gap: 1rem);
+
+        & > * {
+          width: 100%;
+
+          .header {
+            width: max-content;
+            @include display-flex($gap: 0.5rem);
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--ntrl-clr-100);
+            text-transform: capitalize;
+            border-radius: 1rem;
+
+            span {
+              padding: 0.2rem 0.5rem;
+              border-radius: 50%;
+              // background-color: var(--ntrl-clr-100);
+            }
+
+            &.daily {
+              color: var(--ntrl-clr-350);
+              // background-color: var(--pr-clr-100);
+
+              span {
+                color: var(--pr-clr-100);
+              }
+            }
+
+            &.monthly {
+              color: var(--ntrl-clr-350);
+              // background-color: var(--pr-clr-300);
+
+              span {
+                color: var(--pr-clr-300);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,475 @@
+@use '../../abstracts' as *;
+
+.appointment-details-cont {
+  --ff-inter: 'Inter', sans-serif;
+  --tbl-border: 1px solid hsl(0, 0%, 38%, 0.2);
+  --cancel-btn-clr: #ff6e5c;
+  --charcoal-gray: hsl(0, 0%, 38%, 0.7);
+  --dropdown-bdr: 1px solid hsl(0, 0%, 38%, 0.3);
+  --transparent-gray: hsl(0, 0%, 38%, 0.1);
+
+  @include display-flex($dir: column, $gap: 1.25rem, $y: flex-start);
+  width: 100%;
+  color: var(--ntrl-clr-300);
+  letter-spacing: -1px;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background-color: var(--ntrl-clr-100);
+
+  header {
+    width: 100%;
+    @include display-flex($gap: 1rem, $dir: column, $y: flex-start);
+
+    .header-and-btn {
+      width: 100%;
+      @include display-flex($x: space-between);
+      h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      a {
+        color: var(--ntrl-clr-300);
+      }
+    }
+
+    .overview-details {
+      @include display-flex($x: space-between);
+      width: 100%;
+      padding: 1.5rem;
+      border-radius: 1.1rem;
+      outline: 1px solid var(--charcoal-gray);
+
+      .details {
+        @include display-flex($gap: 2rem, $y: center);
+        letter-spacing: normal;
+
+        & > * {
+          @include display-flex($dir: column);
+        }
+
+        .date {
+          gap: 0.6rem;
+          border-right: 1px solid var(--charcoal-gray);
+          padding-right: 1.5rem;
+          & > * {
+            font-weight: 900;
+            color: var(--pr-clr-100);
+          }
+
+          .day {
+            font-size: 1.3rem;
+          }
+
+          .apt-date {
+            font-size: 3rem;
+            line-height: 1;
+          }
+        }
+
+        .time-apt-id,
+        .service-message {
+          align-items: flex-start;
+          gap: 1.2rem;
+
+          & > * {
+            @include display-flex($gap: 0.5rem);
+          }
+        }
+      }
+
+      .actions {
+        width: 10rem;
+
+        .complete-text {
+          justify-self: flex-end;
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: var(--pr-clr-270);
+          text-align: right;
+          padding: 0;
+        }
+
+        .btn-container {
+          width: 100%;
+          @include display-flex($gap: 0.5rem, $dir: column);
+
+          form {
+            width: 100%;
+            .complete-btn {
+              width: 100%;
+              color: var(--ntrl-clr-100);
+              background-color: var(--pr-clr-270);
+              padding: 0.4rem 1rem;
+              border-radius: 1rem;
+              cursor: pointer;
+
+              &:hover {
+                background-color: hsl(137, 64%, 47%, 0.8);
+              }
+            }
+          }
+
+          .reschedule-btn {
+            width: 100%;
+            color: hsl(0, 0%, 38%, 0.5);
+            outline: 1px solid hsl(0, 0%, 38%, 0.5);
+            padding: 0.4rem 1rem;
+            border-radius: 1rem;
+            cursor: pointer;
+
+            &:hover {
+              color: var(--ntrl-clr-100);
+              background-color: hsl(0, 0%, 38%, 0.8);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .table-cont {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1.1rem;
+    outline: 1px solid var(--charcoal-gray);
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      letter-spacing: -0.5px;
+
+      th,
+      td {
+        padding: 0.5rem 1rem;
+        // border: var(--tbl-border);
+      }
+
+      tbody {
+        tr {
+          td:first-child {
+            // width: 12rem;
+            font-weight: bold;
+            border-right: var(--tbl-border);
+          }
+
+          td {
+            border-bottom: var(--tbl-border);
+          }
+        }
+
+        tr:last-child {
+          td {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.reschedule-modal {
+  @include display-flex();
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: hsla(0, 0%, 38%, 0.3);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+
+  .content {
+    width: 30rem;
+    @include display-flex($dir: column, $y: flex-start, $gap: 1rem);
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    background-color: var(--ntrl-clr-100);
+    outline: var(--ntrl-clr-300);
+    // overflow: hidden;
+
+    .header {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--ntrl-clr-300);
+      letter-spacing: -1px;
+    }
+
+    form {
+      width: 100%;
+      @include display-flex(
+        $x: flex-start,
+        $y: flex-start,
+        $dir: column,
+        $gap: 0.5rem
+      );
+      & > * {
+        width: 100%;
+        @include display-flex($dir: column, $y: flex-start, $gap: 1.5rem);
+        border-radius: 0.5rem;
+        background-color: var(--ntrl-clr-100);
+
+        .appointment-form__field {
+          position: relative;
+          width: 100%;
+          @include display-flex($dir: column, $gap: 0.5rem, $y: flex-start);
+
+          .appointment-form__label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--ntrl-clr-300);
+          }
+
+          .services-btn {
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+
+            &:hover {
+              background-color: hsl(0, 0%, 38%, 0.2);
+
+              // & + .appointment-form__checkbox-group {
+              //   display: flex;
+              // }
+            }
+
+            &:active {
+              background: none;
+            }
+          }
+
+          .selected-services {
+            width: 100%;
+
+            p {
+              font-size: 0.875rem;
+              font-weight: 600;
+              color: var(--ntrl-clr-300);
+            }
+
+            ul {
+              @include display-flex($gap: 0.5rem, $x: flex-start);
+              flex-wrap: wrap;
+
+              li {
+                font-size: 0.8rem;
+                color: var(--ntrl-clr-300);
+                text-transform: capitalize;
+                border-radius: 0.25rem;
+                padding: 0.25rem;
+                outline: 1px solid var(--ntrl-clr-300);
+              }
+            }
+          }
+
+          input,
+          .appointment-form__select,
+          .appointment-form__checkbox-group {
+            width: 100%;
+            font-size: 0.875rem;
+            color: var(--ntrl-clr-300);
+            padding: 0.875rem 1rem;
+            border: 1px solid hsl(0, 0%, 9%, 0.3);
+            border-radius: 0.25rem;
+          }
+
+          .appointment-form__select {
+            color: var(--ntrl-clr-300);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            background: none;
+
+            option {
+              color: var(--ntrl-clr-300);
+            }
+          }
+
+          .appointment-form__checkbox-group {
+            width: 16rem;
+            position: absolute;
+            bottom: 0;
+            right: -4rem;
+            z-index: 1000;
+            @include display-flex($dir: column, $y: flex-start);
+            padding: 0;
+            background-color: var(--ntrl-clr-100);
+            scale: 0;
+            transform-origin: bottom left;
+            transition: 200ms ease-in-out;
+
+            &.active {
+              scale: 1;
+            }
+
+            .checkbox-container {
+              width: 100%;
+              @include display-flex($gap: 0.5rem, $x: flex-start);
+              transition: 50ms ease-in-out;
+
+              &:hover {
+                background-color: hsl(0, 0%, 38%);
+                color: var(--ntrl-clr-100);
+
+                label {
+                  .service-price {
+                    color: var(--ntrl-clr-100);
+                  }
+                }
+              }
+
+              input {
+                width: 1rem;
+                height: 1rem;
+                margin-left: 1rem;
+              }
+
+              label {
+                width: 100%;
+                @include display-flex($x: space-between);
+                letter-spacing: -1px;
+                padding-block: 0.5rem;
+                padding-inline-end: 1rem;
+                cursor: pointer;
+
+                .service-price {
+                  color: var(--pr-clr-300);
+                }
+
+                &.active {
+                  background-color: var(--pr-clr-300);
+                  color: var(--ntrl-clr-100);
+                  font-weight: 600;
+
+                  .service-price {
+                    color: var(--ntrl-clr-100);
+                  }
+                }
+              }
+            }
+          }
+
+          .appointment-form__validation {
+            @include display-flex($dir: column);
+
+            .appointment-form__text {
+              font-size: 0.875rem;
+              display: none;
+
+              &--error {
+                color: var(--pr-clr-100);
+              }
+
+              &--valid {
+                color: var(--pr-clr-270);
+              }
+            }
+          }
+        }
+
+        .btn-container {
+          width: 100%;
+          @include display-flex($x: space-between, $gap: 0.5rem);
+
+          & > * {
+            width: 100%;
+            font-size: 0.875rem;
+            padding-block: 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+          }
+          .appointment-form__submit-button {
+            color: var(--ntrl-clr-100);
+            background-color: var(--pr-clr-300);
+
+            &:hover {
+              background-color: var(--pr-clr-350);
+            }
+
+            &:active {
+              background-color: var(--pr-clr-300);
+            }
+          }
+
+          .appointment-form__cancel-button {
+            color: var(--ntrl-clr-300);
+
+            &:hover {
+              outline: 1px solid hsl(0, 0%, 38%, 0.5);
+            }
+
+            &:active {
+              background-color: hsl(0, 0%, 38%, 0.1);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.complete-modal {
+  @include display-flex();
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: hsla(0, 0%, 38%, 0.3);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+
+  .content {
+    width: max-content;
+    // height: 17rem;
+    @include display-flex($y: flex-start);
+    border-radius: 1.25rem;
+    background-color: var(--ntrl-clr-100);
+    outline: var(--ntrl-clr-300);
+    overflow: hidden;
+
+    & > * {
+      width: 250px;
+      height: 250px;
+      padding: 1rem;
+    }
+
+    .body-text {
+      @include display-flex($dir: column, $x: space-between, $y: flex-start);
+
+      & > * {
+        color: var(--ntrl-clr-300);
+        letter-spacing: -1px;
+      }
+
+      .header {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .close-btn {
+        width: 100%;
+        color: var(--ntrl-clr-100);
+        padding: 0.5rem;
+        border-radius: 1rem;
+        background-color: var(--pr-clr-300);
+      }
+    }
+
+    .illustration-container {
+      position: relative;
+      @include display-flex();
+      background-color: var(--ntrl-clr-250);
+
+      img {
+        width: 100%;
+        height: 100%;
+        // object-fit: cover;
+        // position: absolute;
+        // left: 2rem;
+      }
+    }
+  }
+}

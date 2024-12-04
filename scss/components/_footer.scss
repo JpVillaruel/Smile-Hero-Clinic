@@ -1,0 +1,80 @@
+@use '../abstracts' as *;
+
+.footer__section {
+  @include display-flex($dir: column, $gap: 90px);
+  width: 100%;
+  padding-block: 100px;
+  background-color: var(--pr-clr-300);
+  color: var(--ntrl-clr-100);
+  text-align: center;
+
+  .footer__header {
+    .heading {
+      @include display-flex($gap: 15px, $dir: column);
+      .header {
+        font-size: var(--fs-500);
+        font-weight: 800;
+      }
+
+      p {
+        font-size: var(--fs-200);
+      }
+    }
+
+    form {
+      @include display-flex;
+      gap: 10px;
+      margin-top: 25px;
+      font-size: var(--fs-300);
+
+      input {
+        background-color: var(--ntrl-clr-100);
+        padding: 1rem;
+        border-radius: 0.3rem;
+
+        &::placeholder {
+          color: var(--ntrl-clr-300);
+        }
+      }
+
+      button {
+        background-color: var(--ntrl-clr-100);
+        padding: 1rem;
+        border-radius: 0.3rem;
+        color: var(--ntrl-clr-400);
+      }
+    }
+  }
+
+  .contacts__container {
+    @include display-flex();
+    padding-bottom: 60px;
+    border-bottom: 1px solid #ffffff;
+
+    .contact {
+      @include display-flex($gap: 10px, $dir: column);
+      width: 333px;
+
+      img {
+        width: 34px;
+        height: 34px;
+      }
+      p {
+        font-size: var(--fs-300);
+      }
+    }
+  }
+
+  .social-media__container {
+    @include display-flex($gap: 20px, $dir: column);
+    p {
+      width: 600px;
+      font-size: var(--fs-200);
+      line-height: 1.6em;
+    }
+
+    .social-medias {
+      @include display-flex($gap: 12px);
+    }
+  }
+}

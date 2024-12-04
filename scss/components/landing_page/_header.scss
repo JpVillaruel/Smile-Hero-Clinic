@@ -1,0 +1,128 @@
+@use '../../abstracts' as *;
+.homepage {
+  --ff-inter: 'Inter', sans-serif;
+
+  header {
+    width: 100%;
+    padding: 4rem 1.5rem;
+    @include display-flex($dir: column, $gap: 2rem);
+    font-family: var(--ff-inter);
+
+    .header-container {
+      width: 100%;
+      text-align: center;
+      @include display-flex($dir: column, $gap: 2rem);
+
+      & > * {
+        width: 100%;
+        @include display-flex($dir: column);
+      }
+
+      .header-texts {
+        gap: 1.25rem;
+
+        h1 {
+          font-size: 2.875rem;
+          font-size: clamp(2.875rem, 1.4225rem + 6.1972vw, 7rem);
+          color: var(--pr-clr-300);
+          line-height: 0.9;
+          width: 100%;
+          max-width: 40rem;
+
+          strong {
+            font-weight: 900;
+            font-style: italic;
+          }
+        }
+
+        p {
+          color: var(--ntrl-clr-300);
+        }
+      }
+
+      .form-links {
+        width: 100%;
+        gap: 0.625rem;
+
+        li {
+          width: 100%;
+          a {
+            width: 100%;
+            @include display-flex();
+            padding: 1rem;
+            border-radius: 0.25rem;
+            text-transform: uppercase;
+
+            &.signup-link {
+              color: var(--pr-clr-300);
+              font-weight: bold;
+              background-color: var(--ntrl-clr-100);
+
+              &:active,
+              &:hover {
+                outline: 1px solid var(--pr-clr-300);
+              }
+            }
+
+            &.login-link {
+              color: var(--ntrl-clr-100);
+              background-color: var(--pr-clr-300);
+
+              &:active,
+              &:hover {
+                background-color: var(--pr-clr-350);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .image-container {
+      width: 100%;
+      max-width: 37rem;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 40rem) {
+  .homepage {
+    header {
+      align-items: flex-start;
+      background: url('../../assets/landing-page/blurred-circles.svg') no-repeat;
+      background-size: cover;
+      padding-inline: 5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .homepage {
+    header {
+      flex-direction: row;
+      gap: 3.125rem;
+
+      .header-container {
+        text-align: left;
+        gap: 4rem;
+        align-items: flex-start;
+
+        .header-texts {
+          gap: 2rem;
+          text-align: left;
+          align-items: flex-start;
+          max-width: 40rem;
+        }
+
+        .form-links {
+          flex-direction: row;
+          max-width: 40rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,483 @@
+@use '../../abstracts' as *;
+
+.appointments__container.appointments__page {
+  --ff-inter: 'Inter', sans-serif;
+  --tbl-border: 1px solid hsl(0, 0%, 38%, 0.2);
+  --cancel-btn-clr: #ff6e5c;
+  --charcoal-gray: hsl(0, 0%, 38%, 0.7);
+  --transparent-gray: hsl(0, 0%, 38%, 0.1);
+  --dropdown-bdr: 1px solid hsl(0, 0%, 38%, 0.3);
+
+  @include display-flex($dir: column, $gap: 1.25rem, $y: flex-start);
+  width: 100%;
+
+  .appointments__table {
+    width: 100%;
+    @include display-flex($dir: column, $gap: 1.25rem, $y: flex-start);
+
+    color: var(--ntrl-clr-300);
+    letter-spacing: -1px;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    background-color: var(--ntrl-clr-100);
+
+    .table-heading__container {
+      width: 100%;
+      @include display-flex($x: space-between);
+
+      .table-heading {
+        @include display-flex($gap: 0.5rem);
+        font-size: 1.5rem;
+        font-family: var(--ff-inter);
+        text-transform: uppercase;
+
+        .table-item-count {
+          @include display-flex();
+          width: 1.25rem;
+          height: 1.25rem;
+          font-size: 0.875rem;
+          color: var(--ntrl-clr-100);
+          padding: 0.25rem;
+          border-radius: 50%;
+          background-color: var(--pr-clr-100);
+        }
+      }
+
+      .search__container {
+        width: 25rem;
+        @include display-flex($x: space-between);
+        padding: 0.75rem 1rem;
+        border-radius: 2rem;
+        background-color: #f8f8f8;
+        outline: 1px solid hsl(0, 0%, 38%, 0.3);
+
+        input {
+          width: 100%;
+          color: var(--ntrl-clr-300);
+
+          &::placeholder {
+            color: hsl(0, 0%, 38%, 0.5);
+          }
+        }
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: 0.875rem 0.75rem;
+      }
+
+      thead {
+        tr {
+          border-top: var(--tbl-border);
+          border-bottom: var(--tbl-border);
+          th {
+            font-weight: bold;
+            color: var(--pr-clr-300);
+            text-transform: capitalize;
+            text-align: left;
+
+            &:first-child {
+              padding-inline-start: 0;
+            }
+
+            .dropdown-container {
+              position: relative;
+              width: min-content;
+              margin-left: 0.5rem;
+              display: inline-block;
+
+              .filter-btn {
+                width: 100%;
+                cursor: pointer;
+              }
+
+              .dropdown {
+                position: absolute;
+                top: 3rem;
+                left: 0;
+                @include display-flex($dir: column, $y: flex-start);
+                border: var(--dropdown-bdr);
+                border-radius: 0.5rem;
+                background-color: var(--ntrl-clr-100);
+                overflow: hidden;
+                z-index: 1;
+                box-shadow: 4px 4px 16px hsl(0, 0%, 38%, 0.1);
+                display: none;
+
+                li {
+                  width: 100%;
+
+                  &:hover {
+                    background-color: var(--transparent-gray);
+                  }
+
+                  &:not(:last-child) {
+                    border-bottom: var(--dropdown-bdr);
+                  }
+
+                  button {
+                    width: max-content;
+                    font-size: 0.875rem;
+                    font-weight: normal;
+                    color: var(--ntrl-clr-300);
+                    padding: 1rem;
+                    margin: 0;
+                    text-transform: capitalize;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: var(--tbl-border);
+          cursor: pointer;
+
+          td {
+            font-size: 0.875rem;
+            padding: 1.5rem 0.75rem;
+
+            &.patient-cell {
+              &.id {
+                width: 5.8rem;
+                padding-inline-start: 0;
+              }
+              &.name {
+                @include display-flex($dir: column, $y: flex-start);
+                & > * {
+                  width: 10rem;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                }
+                .patient-name {
+                  font-size: 1.2rem;
+                  font-weight: 600;
+                }
+                .patient-email {
+                  font-family: var(--ff-inter);
+                  font-size: 0.875rem;
+                  color: var(--charcoal-gray);
+                }
+              }
+              &.phone {
+                width: 8.5rem;
+              }
+              &.time {
+                width: 5rem;
+              }
+              &.date {
+                width: 6rem;
+              }
+              &.message {
+                // width: 1rem;
+                // white-space: nowrap;
+                // text-overflow: ellipsis;
+                // overflow: hidden;
+                // .view-message-btn {
+                //   color: var(--ntrl-clr-300);
+                //   cursor: pointer;
+
+                //   &:hover {
+                //     text-decoration: underline;
+                //   }
+                // }
+                .message-text {
+                  width: 4rem;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                  text-transform: none;
+                }
+              }
+            }
+
+            &:last-child {
+              width: 9rem;
+              font-weight: 600;
+
+              .button-container {
+                @include display-flex($gap: 1rem, $x: flex-start);
+                .button {
+                  cursor: pointer;
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                  &.accept {
+                    color: var(--pr-clr-350);
+                  }
+                  &.cancel {
+                    color: var(--cancel-btn-clr);
+                  }
+                }
+
+                .set-doctor-modal {
+                  @include display-flex();
+                  width: 100%;
+                  min-height: 100vh;
+                  position: fixed;
+                  left: 0;
+                  top: 0;
+                  background-color: hsla(0, 0%, 38%, 0.3);
+                  backdrop-filter: blur(3px);
+                  z-index: 1000;
+
+                  .content {
+                    width: 30rem;
+                    @include display-flex(
+                      $dir: column,
+                      $y: flex-start,
+                      $gap: 1rem
+                    );
+                    padding: 1.5rem;
+                    border-radius: 1.25rem;
+                    background-color: var(--ntrl-clr-100);
+                    outline: var(--ntrl-clr-300);
+                    // overflow: hidden;
+
+                    .header {
+                      font-size: 1.2rem;
+                      font-weight: bold;
+                      color: var(--ntrl-clr-300);
+                      letter-spacing: -1px;
+                    }
+
+                    form {
+                      width: 100%;
+                      @include display-flex(
+                        $x: flex-start,
+                        $y: flex-start,
+                        $dir: column,
+                        $gap: 0.5rem
+                      );
+                      & > * {
+                        width: 100%;
+                        @include display-flex(
+                          $dir: column,
+                          $y: flex-start,
+                          $gap: 1.5rem
+                        );
+                        border-radius: 0.5rem;
+                        background-color: var(--ntrl-clr-100);
+
+                        .appointment-form__field {
+                          position: relative;
+                          width: 100%;
+                          @include display-flex(
+                            $dir: column,
+                            $gap: 0.5rem,
+                            $y: flex-start
+                          );
+
+                          .appointment-form__label {
+                            font-size: 0.75rem;
+                            font-weight: bold;
+                            color: var(--ntrl-clr-300);
+                          }
+
+                          .services-btn {
+                            width: 100%;
+                            text-align: left;
+                            cursor: pointer;
+
+                            &:hover {
+                              background-color: hsl(0, 0%, 38%, 0.2);
+
+                              // & + .appointment-form__checkbox-group {
+                              //   display: flex;
+                              // }
+                            }
+
+                            &:active {
+                              background: none;
+                            }
+                          }
+
+                          input,
+                          .appointment-form__select,
+                          .appointment-form__checkbox-group {
+                            width: 100%;
+                            font-size: 0.875rem;
+                            color: var(--ntrl-clr-300);
+                            padding: 0.875rem 1rem;
+                            border: 1px solid hsl(0, 0%, 9%, 0.3);
+                            border-radius: 0.25rem;
+                          }
+
+                          .appointment-form__select {
+                            color: var(--ntrl-clr-300);
+                            appearance: none;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            -ms-appearance: none;
+                            background: none;
+
+                            option {
+                              color: var(--ntrl-clr-300);
+                            }
+                          }
+
+                          .appointment-form__validation {
+                            @include display-flex($dir: column);
+
+                            .appointment-form__text {
+                              font-size: 0.875rem;
+                              display: none;
+
+                              &--error {
+                                color: var(--pr-clr-100);
+                              }
+
+                              &--valid {
+                                color: var(--pr-clr-270);
+                              }
+                            }
+                          }
+                        }
+
+                        .btn-container {
+                          width: 100%;
+                          @include display-flex(
+                            $x: space-between,
+                            $gap: 0.5rem
+                          );
+
+                          & > * {
+                            width: 100%;
+                            font-size: 0.875rem;
+                            padding-block: 0.75rem;
+                            border-radius: 0.375rem;
+                            cursor: pointer;
+                          }
+                          .appointment-form__submit-button {
+                            color: var(--ntrl-clr-100);
+                            background-color: var(--pr-clr-300);
+
+                            &:hover {
+                              background-color: var(--pr-clr-350);
+                            }
+
+                            &:active {
+                              background-color: var(--pr-clr-300);
+                            }
+                          }
+
+                          .appointment-form__cancel-button {
+                            color: var(--ntrl-clr-300);
+
+                            &:hover {
+                              outline: 1px solid hsl(0, 0%, 38%, 0.5);
+                            }
+
+                            &:active {
+                              background-color: hsl(0, 0%, 38%, 0.1);
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .modal {
+    @include display-flex();
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: hsla(0, 0%, 38%, 0.3);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+
+    &__content {
+      @include display-flex();
+      border-radius: 1.25rem;
+      background-color: var(--ntrl-clr-100);
+      outline: var(--ntrl-clr-300);
+      overflow: hidden;
+
+      & > * {
+        width: 370px;
+        height: 370px;
+      }
+
+      .body-text {
+        @include display-flex($dir: column, $gap: 1rem, $x: space-between);
+        padding: 2rem;
+
+        .modal__header {
+          width: 100%;
+          @include display-flex($dir: column, $gap: 0.5rem, $y: flex-start);
+
+          #modalStatus {
+            font-size: 2.3rem;
+            font-weight: bold;
+            color: var(--ntrl-clr-300);
+            // text-transform: uppercase;
+            text-align: left;
+            letter-spacing: -2px;
+
+            .appointment-id {
+              color: var(--pr-clr-100);
+            }
+          }
+
+          #modalMessage {
+            a {
+              @include display-flex($gap: 1rem);
+              font-weight: 500;
+              color: var(--pr-clr-100);
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      .illustration__container {
+        overflow: hidden;
+
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &__button {
+      width: 100%;
+      color: var(--ntrl-clr-100);
+      text-transform: capitalize;
+      padding-block: 0.875rem;
+      border-radius: 2rem;
+      background-color: var(--pr-clr-300);
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--pr-clr-350);
+      }
+
+      &:active {
+        background-color: var(--pr-clr-300);
+      }
+    }
+  }
+}

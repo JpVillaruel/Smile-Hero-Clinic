@@ -1,0 +1,62 @@
+// abstracts
+@use 'abstracts/resets';
+@use 'abstracts/index';
+@use 'abstracts/mixins';
+@use 'abstracts/fonts';
+@use 'abstracts/boilerplates';
+@use 'abstracts/breakpoints';
+
+// components
+// general | use across multiple pages
+@use 'components/account_header';
+@use 'components/account_footer';
+@use 'components/nav';
+@use 'components/footer';
+
+// landing page
+@use 'components/landing_page/navigation';
+@use 'components/landing_page/header';
+@use 'components/landing_page/about';
+@use 'components/landing_page/branches';
+@use 'components/landing_page/services';
+@use 'components/landing_page/testimonials';
+@use 'components/landing_page/homepage-footer';
+
+// signup page | form
+@use 'components/signup_page/signup_form';
+
+// login page | form
+@use 'components/login_page/login_form';
+@use 'components/login_page/forgot_pass';
+@use 'components/login_page/reset_pass';
+
+// account page
+@use 'components/user_page/side_nav';
+@use 'components/user_page/info';
+@use 'components/user_page/appointment_page';
+@use 'components/user_page/appointment_form_page';
+@use 'components/user_page/confirmation';
+@use 'components/user_page/history';
+@use 'components/user_page/faqs_questions';
+@use 'components/user_page/feedback';
+@use 'components/user_page/delete_acc_modal.scss';
+@use 'components/user_page/homepage.scss';
+@use 'components/user_page/edit-account.scss';
+
+// admin interface
+@use 'components/admin_page/admin_nav';
+@use 'components/admin_page/sidebar_nav';
+@use 'components/admin_page/dashboard';
+@use 'components/admin_page/appointments';
+@use 'components/admin_page/booked';
+@use 'components/admin_page/patients';
+@use 'components/admin_page/feedbacks';
+@use 'components/admin_page/pagination';
+@use 'components/admin_page/doctors';
+@use 'components/admin_page/new_appointment';
+@use 'components/admin_page/new_doctor';
+@use 'components/admin_page/settings';
+@use 'components/admin_page/set_dates';
+@use 'components/admin_page/report';
+@use 'components/admin_page/apt-details';
+@use 'components/admin_page/raw_report';

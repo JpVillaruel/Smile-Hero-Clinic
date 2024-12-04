@@ -1,0 +1,158 @@
+@use '../../abstracts' as *;
+
+.nav.landing-page {
+  --active-link: #f0f3f9;
+  --border-radius: 0.25rem;
+
+  width: 100%;
+  @include display-flex($x: space-between);
+  background-color: var(--ntrl-clr-100);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 2px 0px 10px hsl(0, 0%, 38%, 0.5);
+
+  .mobile-nav-container.hidden {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: hsl(0, 0%, 38%, 0.5);
+    display: none;
+
+    &.visible {
+      display: flex;
+    }
+
+    .menu-links {
+      width: 16rem;
+      height: 40rem;
+      @include display-flex(
+        $dir: column,
+        $y: flex-start,
+        $x: space-between,
+        $gap: 0.5rem
+      );
+      position: relative;
+      top: 0.5rem;
+      left: 0.5rem;
+      padding: 1rem;
+      background-color: var(--ntrl-clr-100);
+      border-radius: var(--border-radius);
+
+      & > * {
+        width: 100%;
+        @include display-flex($dir: column, $y: flex-start, $gap: 0.5rem);
+      }
+
+      .landing-page-links {
+        a {
+          color: var(--ntrl-clr-300);
+        }
+        .close-nav-btn {
+          align-self: flex-end;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .form-links {
+        a {
+          justify-content: center;
+        }
+      }
+
+      li {
+        width: 100%;
+        border-radius: var(--border-radius);
+
+        &:hover {
+          background-color: var(--active-link);
+        }
+
+        &.active__link {
+          // background-color: var(--active-link);
+          a {
+            font-weight: 900;
+            color: var(--pr-clr-300);
+            text-decoration: underline;
+          }
+        }
+        a {
+          @include display-flex($x: flex-start);
+          width: 100%;
+          padding: 1rem;
+          border-radius: var(--border-radius);
+          color: var(--pr-clr-300);
+          text-transform: uppercase;
+
+          &.login-link {
+            width: 100%;
+            color: var(--ntrl-clr-100);
+            text-align: center;
+            background-color: var(--pr-clr-300);
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 40rem) {
+  .nav.landing-page {
+    padding: 1.5rem 5rem;
+    .mobile-nav-container.hidden {
+      width: max-content;
+      display: flex;
+      min-height: initial;
+      background: none;
+      position: initial;
+
+      .menu-links {
+        width: initial;
+        display: flex;
+        position: initial;
+        flex-direction: row;
+
+        height: initial;
+        padding: 0;
+
+        & > * {
+          width: initial;
+          flex-direction: row;
+
+          &.form-links {
+            flex-direction: row-reverse;
+          }
+
+          li {
+            a {
+              padding: 0.8rem;
+              font-size: 0.8rem;
+
+              &.signup-link {
+                content: 'Signup';
+                color: var(--ntrl-clr-100);
+                background-color: var(--pr-clr-300);
+              }
+
+              &.login-link {
+                color: var(--pr-clr-300);
+                background: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    button {
+      display: none;
+    }
+  }
+}

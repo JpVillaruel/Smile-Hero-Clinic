@@ -1,0 +1,84 @@
+@use '../../abstracts' as *;
+
+.admin-sidenav {
+  @include display-flex($dir: column, $x: space-between);
+  width: 100%;
+  max-width: 18.25rem;
+  height: 100%;
+  min-height: 100vh;
+  // max-height: 55.5rem;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background-color: var(--ntrl-clr-100);
+
+  ul {
+    @include display-flex($dir: column, $gap: 0.5rem);
+    width: 100%;
+    li {
+      width: 100%;
+      border-radius: 0.5rem;
+      &.active__link {
+        background-color: var(--ntrl-clr-250);
+
+        a {
+          font-weight: bold;
+          color: var(--pr-clr-300);
+        }
+      }
+
+      a {
+        width: 100%;
+        @include display-flex($x: space-between, $dir: row-reverse);
+        padding: 1rem;
+        color: var(--ntrl-clr-300);
+        letter-spacing: -1px;
+        border-radius: 0.5rem;
+
+        &:hover {
+          background-color: var(--ntrl-clr-250);
+        }
+      }
+    }
+  }
+
+  .bottom-links {
+    width: 100%;
+    background-color: var();
+
+    ul {
+      gap: 0;
+      border-radius: 0.5rem;
+      background-color: hsl(0, 0%, 92%, 0.4);
+      overflow: hidden;
+
+      li {
+        a {
+          font-size: 0.875rem;
+          flex-direction: row;
+          justify-content: flex-start;
+          gap: 0.625rem;
+
+          // img {
+          //   width: 1rem;
+          //   height: 1rem;
+          // }
+        }
+      }
+    }
+
+    #logout_button {
+      width: 100%;
+      @include display-flex();
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      a {
+        width: 100%;
+        color: var(--ntrl-clr-100);
+        padding: 1rem;
+        letter-spacing: -1px;
+        border-radius: 0.5rem;
+        background-color: var(--pr-clr-300);
+      }
+    }
+  }
+}

@@ -1,0 +1,266 @@
+@use '../../abstracts' as *;
+
+.appointment_form {
+  @include display-flex($dir: column, $gap: 0.5rem);
+
+  h1,
+  form {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--ntrl-clr-300);
+    text-transform: uppercase;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--ntrl-clr-100);
+  }
+
+  form {
+    @include display-flex($x: flex-start, $y: flex-start, $gap: 0.5rem);
+    & > * {
+      width: 100%;
+      @include display-flex($dir: column, $y: flex-start, $gap: 1.5rem);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: var(--ntrl-clr-100);
+
+      .appointment-form__field {
+        position: relative;
+        width: 100%;
+        @include display-flex($dir: column, $gap: 0.5rem, $y: flex-start);
+
+        .appointment-form__label {
+          font-size: 0.75rem;
+          font-weight: bold;
+          color: var(--ntrl-clr-300);
+        }
+
+        .services-btn {
+          width: 100%;
+          text-align: left;
+          cursor: pointer;
+
+          &:hover {
+            background-color: hsl(0, 0%, 38%, 0.2);
+
+            // & + .appointment-form__checkbox-group {
+            //   display: flex;
+            // }
+          }
+
+          &:active {
+            background: none;
+          }
+        }
+
+        .selected-services {
+          width: 100%;
+
+          p {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--ntrl-clr-300);
+          }
+
+          ul {
+            @include display-flex($gap: 0.5rem, $x: flex-start);
+            flex-wrap: wrap;
+
+            li {
+              font-size: 0.8rem;
+              color: var(--ntrl-clr-300);
+              text-transform: capitalize;
+              border-radius: 0.25rem;
+              padding: 0.25rem;
+              outline: 1px solid var(--ntrl-clr-300);
+            }
+          }
+        }
+
+        input,
+        .appointment-form__select,
+        .appointment-form__checkbox-group {
+          width: 100%;
+          font-size: 0.875rem;
+          color: var(--ntrl-clr-300);
+          padding: 0.875rem 1rem;
+          border: 1px solid hsl(0, 0%, 9%, 0.3);
+          border-radius: 0.25rem;
+        }
+
+        .appointment-form__select {
+          color: var(--ntrl-clr-300);
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          -ms-appearance: none;
+          background: none;
+
+          option {
+            color: var(--ntrl-clr-300);
+          }
+        }
+
+        .appointment-form__checkbox-group {
+          width: 16rem;
+          position: absolute;
+          bottom: 0;
+          right: -4rem;
+          z-index: 1000;
+          @include display-flex($dir: column, $y: flex-start);
+          padding: 0;
+          background-color: var(--ntrl-clr-100);
+          scale: 0;
+          transform-origin: bottom left;
+          transition: 200ms ease-in-out;
+
+          &.active {
+            scale: 1;
+          }
+
+          .checkbox-container {
+            width: 100%;
+            @include display-flex($gap: 0.5rem, $x: flex-start);
+            transition: 50ms ease-in-out;
+
+            &:hover {
+              background-color: hsl(0, 0%, 38%);
+              color: var(--ntrl-clr-100);
+
+              label {
+                .service-price {
+                  color: var(--ntrl-clr-100);
+                }
+              }
+            }
+
+            input {
+              width: 1rem;
+              height: 1rem;
+              margin-left: 1rem;
+            }
+
+            label {
+              width: 100%;
+              @include display-flex($x: space-between);
+              letter-spacing: -1px;
+              padding-block: 0.5rem;
+              padding-inline-end: 1rem;
+              cursor: pointer;
+
+              .service-price {
+                color: var(--pr-clr-300);
+              }
+
+              &.active {
+                background-color: var(--pr-clr-300);
+                color: var(--ntrl-clr-100);
+                font-weight: 600;
+
+                .service-price {
+                  color: var(--ntrl-clr-100);
+                }
+              }
+            }
+          }
+        }
+
+        .appointment-form__validation {
+          @include display-flex($dir: column);
+
+          .appointment-form__text {
+            font-size: 0.875rem;
+            display: none;
+
+            &--error {
+              color: var(--pr-clr-100);
+            }
+
+            &--valid {
+              color: var(--pr-clr-270);
+            }
+          }
+        }
+      }
+
+      .appointment-form__submit-button {
+        width: 100%;
+        font-size: 0.875rem;
+        color: var(--ntrl-clr-100);
+        padding-block: 0.75rem;
+        border-radius: 0.375rem;
+        background-color: var(--pr-clr-100);
+      }
+    }
+
+    .modal {
+      @include display-flex();
+      width: 100%;
+      min-height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color: hsla(0, 0%, 38%, 0.3);
+      backdrop-filter: blur(3px);
+
+      &__content {
+        @include display-flex($dir: column, $gap: 1rem);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--ntrl-clr-100);
+
+        & > * {
+          font-size: 0.875rem;
+        }
+
+        .modal__header {
+          @include display-flex($dir: column, $gap: 0.5rem);
+          padding-inline: 1rem;
+
+          #modalStatus {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--ntrl-clr-300);
+            text-align: center;
+            line-height: 1;
+          }
+
+          #modalMessage {
+            color: var(--pr-clr-100);
+          }
+        }
+      }
+
+      &__button {
+        width: 100%;
+        color: var(--ntrl-clr-100);
+        padding-block: 0.875rem;
+        border-radius: 0.5rem;
+        background-color: var(--pr-clr-300);
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--pr-clr-350);
+        }
+
+        &:active {
+          background-color: var(--pr-clr-300);
+        }
+      }
+    }
+  }
+}
+
+
+
+// 820px
+@media screen and (max-width: 51.25rem) {
+ .appointment_form {
+  form {
+    flex-direction: column;
+  }
+ } 
+}

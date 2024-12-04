@@ -1,0 +1,36 @@
+@use '../../abstracts' as *;
+
+.homepage {
+  .services-page {
+    header {
+      .texts-container {
+        width: 100%;
+        & > * {
+          width: 100%;
+          max-width: 55rem;
+        }
+        .paragraph-text {
+          width: 100%;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: flex-start;
+
+          .list-column {
+            @include display-flex($gap: 1rem, $dir: column, $y: flex-start);
+
+            li {
+              width: 100%;
+              max-width: 20rem;
+              @include display-flex($gap: 1rem, $x: flex-start);
+              border-radius: 0.5rem;
+              padding: 1rem;
+              outline: 1px solid var(--pr-clr-300);
+              background-color: #f0f3f9;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,147 @@
+:root {
+  // colors
+  // primary colors
+  --pr-clr-100: #e84531;
+  --pr-clr-150: #ff6e5c;
+  --pr-clr-200: #faaf0d;
+  --pr-clr-250: #dbffe5;
+  --pr-clr-270: #2bc757;
+  --pr-clr-300: #1d72f2;
+  --pr-clr-350: #5c9dff;
+  --pr-clr-400: #1d72f285;
+
+  // neutral colors
+  --ntrl-clr-100: #ffffff;
+  --ntrl-clr-200: #ebebeb;
+  --ntrl-clr-250: #f0f3f9;
+  --ntrl-clr-300: #616161;
+  --ntrl-clr-350: #2c2c2c;
+  --ntrl-clr-400: #212121;
+
+  // font family
+
+  --fs-100: 0.75rem; /* smaller size 12px */
+  --fs-200: 1rem; /* default size 16px*/
+  --fs-300: 1.25rem; /* medium size 20px*/
+  --fs-400: 2rem; /* card header 32px*/
+  --fs-450: 3rem; /* service card header 48px */
+  --fs-500: 3.375rem; /* section header 54px*/
+  --fs-600: 6rem; /* landing page header 96px*/
+
+  --d: 1px solid #333;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--fs-200);
+  color: var(--ntrl-clr-400);
+  background-color: var(--ntrl-clr-200);
+  position: relative;
+
+  &.user__page {
+    background-image: url('../../assets/wave-haikei.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+
+  &.admin__page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  &[class*='homepage'] {
+    background-color: #f0f3f9;
+  }
+
+  main {
+    .nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background-color: var(--ntrl-clr-100);
+
+      &__links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        li {
+          button {
+            a {
+              color: var(--ntrl-clr-300);
+              letter-spacing: -1px;
+
+              &:hover {
+                color: var(--pr-clr-300);
+                text-decoration: underline;
+              }
+
+              &.signup_button {
+                color: var(--ntrl-clr-100);
+                padding: 0.5rem 1rem;
+                border-radius: 0.3rem;
+                background-color: var(--pr-clr-300);
+
+                &:hover {
+                  background-color: var(--pr-clr-350);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.user__main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: min(100% - 2rem, 63.75rem);
+      margin-inline: auto;
+
+      & > * {
+        width: 100%;
+      }
+
+      .user-contents {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-block-end: 1rem;
+
+        & > * {
+          width: 100%;
+        }
+      }
+    }
+
+    &.admin__main {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: min(100% - 4rem, 78.25rem);
+      // width: min(100% - 4rem, 90rem);
+      margin-block: 1.25rem;
+
+      .admin__content {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1.25rem;
+      }
+    }
+  }
+}

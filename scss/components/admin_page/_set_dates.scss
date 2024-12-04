@@ -1,0 +1,55 @@
+@use '../../abstracts' as *;
+
+.admin__content {
+  .set-date-container {
+    width: 100%;
+    @include display-flex($dir: column, $y: flex-start, $gap: 1.2rem);
+    border-radius: 1rem;
+    padding: 1rem;
+    color: var(--ntrl-clr-300);
+    letter-spacing: -1px;
+    background-color: var(--ntrl-clr-100);
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--pr-clr-300);
+    }
+
+    form {
+      @include display-flex($dir: column, $y: flex-start, $gap: 1rem);
+
+      .field-group {
+        width: 22rem;
+        @include display-flex($dir: column, $y: flex-start, $x: space-between, $gap: 0.5rem);
+
+        label {
+          font-weight: 600;
+          color: var(--ntrl-clr-300);
+        }
+
+        input {
+          font-size: 0.875rem;
+          color: var(--ntrl-clr-300);
+          border: 1px solid var(--ntrl-clr-300);
+          padding: 0.5rem;
+          border-radius: 0.25rem;
+          cursor: pointer;
+        }
+      }
+
+      button {
+        font-weight: 600;
+        color: var(--ntrl-clr-100);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--pr-clr-300);
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--pr-clr-350);
+        }
+      }
+    }
+  }
+}

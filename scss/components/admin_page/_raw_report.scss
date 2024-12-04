@@ -1,0 +1,223 @@
+@use '../../abstracts' as *;
+.raw-report-container {
+  background-color: var(--ntrl-clr-100);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+
+  label,
+  input {
+    cursor: pointer;
+  }
+
+  .form-field {
+    padding: 1rem;
+    border-radius: 0.2rem;
+    outline: 1px solid hsl(0, 0%, 38%, 0.5);
+  }
+
+  .header-container {
+    @include display-flex($dir: column, $y: flex-start);
+
+    .header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--pr-clr-300);
+    }
+
+    .sub-header {
+      color: var(--ntrl-clr-300);
+    }
+  }
+
+  .form-fields-container {
+    @include display-flex($y: flex-start, $gap: 1.5rem);
+
+    .date-container {
+      @include display-flex($gap: 0.5rem, $dir: column, $y: flex-start);
+
+      .field-header {
+        font-weight: bold;
+        color: var(--ntrl-clr-300);
+        letter-spacing: -1px;
+
+        span {
+          color: var(--pr-clr-100);
+        }
+      }
+
+      .form-field {
+        @include display-flex($gap: 1rem);
+
+        .field {
+          @include display-flex($gap: 0.5em, $dir: column, $y: flex-start);
+          font-size: 0.875rem;
+
+          label {
+            // font-size: 0.7rem;
+            // font-weight: bold;
+            color: var(--ntrl-clr-300);
+            letter-spacing: -1px;
+          }
+
+          input {
+            color: var(--ntrl-clr-300);
+            padding: 0.4rem;
+            border-radius: 0.2rem;
+            outline: 1px solid hsl(0, 0%, 38%, 0.5);
+
+            &:hover,
+            &:active {
+              outline: 2px solid var(--pr-clr-300);
+            }
+          }
+        }
+      }
+    }
+
+    .status-container,
+    .patient-label-container {
+      @include display-flex($gap: 0.5rem, $dir: column, $y: flex-start);
+
+      .field-header {
+        font-weight: bold;
+        color: var(--ntrl-clr-300);
+        letter-spacing: -1px;
+
+        span {
+          color: var(--pr-clr-100);
+        }
+      }
+
+      .form-field {
+        @include display-flex($gap: 0.5em, $dir: column, $y: flex-start);
+        font-size: 0.875rem;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        outline: 1px solid hsl(0, 0%, 38%, 0.5);
+
+        label {
+          display: none;
+          color: var(--ntrl-clr-300);
+          letter-spacing: -1px;
+        }
+
+        .checkboxes-container {
+          width: 20rem;
+          @include display-flex($gap: 1rem, $x: flex-start);
+          flex-wrap: wrap;
+          color: var(--ntrl-clr-300);
+
+          .checkbox {
+            @include display-flex($gap: 0.2rem);
+          }
+        }
+      }
+    }
+
+    .form-button {
+      align-self: center;
+      font-weight: 600;
+      color: var(--ntrl-clr-100);
+      padding: 0.8rem 2rem;
+      margin-bottom: 0.5rem;
+      border-radius: 0.4rem;
+      background-color: var(--pr-clr-300);
+
+      &:hover {
+        background-color: var(--pr-clr-350);
+      }
+
+      &:active {
+        background-color: var(--pr-clr-300);
+      }
+    }
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  .table-container {
+    width: 100%;
+    @include display-flex($dir: column, $gap: 1rem, $y: flex-start);
+    .table-header {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--ntrl-clr-300);
+    }
+
+    .header-container {
+      @include display-flex($x: space-between);
+      width: 100%;
+      .header-text {
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--ntrl-clr-300);
+      }
+      .buttons-container {
+        width: 100%;
+        @include display-flex($gap: 1rem, $x: flex-end);
+
+        button {
+          @include display-flex();
+          color: var(--ntrl-clr-100);
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+        }
+      }
+
+      .excel-btn {
+        background-color: rgb(0, 219, 0);
+      }
+
+      .print-btn {
+        background-color: var(--ntrl-clr-300);
+      }
+    }
+
+    .appointments-table {
+      width: 100%;
+      border: 1px solid hsl(0, 0%, 38%, 0.5);
+      border-collapse: collapse;
+
+      th,
+      td {
+        font-size: 0.8rem;
+        color: var(--ntrl-clr-300);
+        padding: 0.5rem;
+        border: 1px solid hsl(0, 0%, 38%, 0.5);
+      }
+
+      th {
+        font-weight: bold;
+        color: var(--pr-clr-300);
+        text-align: left;
+        text-transform: capitalize;
+      }
+
+      td {
+        font-size: 0.6rem;
+      }
+
+      td:nth-child(1),
+      td:nth-child(2),
+      td:nth-child(3) {
+        font-size: 0.6rem;
+        font-weight: bold;
+      }
+
+      td:nth-child(4),
+      td:nth-child(9),
+      td:nth-child(10) {
+        font-size: 0.6rem;
+        text-transform: capitalize;
+      }
+    }
+
+    .empty-table-text {
+      color: var(--ntrl-clr-300);
+      margin-top: 1rem;
+    }
+  }
+}

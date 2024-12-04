@@ -1,0 +1,129 @@
+@use '../../abstracts' as *;
+
+.dental-history__page {
+  --light-gray-border: 1px solid hsl(0, 0%, 38%, 0.3);
+  --ff-inter: 'Inter', sans-serif;
+  --pending-bg: #fff3d8;
+  --complete-bg: #dbffe5;
+  --accepted-bg: #eef5ff;
+  --rejected-bg: #ffe9e6;
+  --missed-bg: #e8e8e8;
+  --canceled-bg: #ff1c1c;
+
+  width: 100%;
+  border-radius: 0.5rem;
+  border: var(--light-gray-border);
+  background-color: var(--ntrl-clr-100);
+  overflow: hidden;
+
+  table {
+    width: 100%;
+    font-family: var(--ff-inter);
+    border-collapse: collapse;
+
+    th,
+    td {
+      font-size: 0.75rem;
+      color: var(--ntrl-clr-300);
+      text-align: left;
+      text-transform: uppercase;
+      padding: 0.75rem;
+
+      &:not(:last-child) {
+        border-right: var(--light-gray-border);
+      }
+    }
+
+    thead {
+      tr {
+        th {
+          font-weight: bold;
+          border-bottom: var(--light-gray-border);
+
+          &:nth-child(1) {
+            width: 9rem;
+          }
+
+          &:nth-child(2),
+          &:nth-child(4) {
+            width: 117px;
+            width: 206px;
+          }
+
+          &:nth-child(3) {
+            width: 95px;
+          }
+
+          &:nth-child(5) {
+            width: 117px;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &:not(:last-child) {
+          border-bottom: var(--light-gray-border);
+        }
+
+        td {
+          &:first-child {
+            text-transform: unset;
+            font-size: clamp(0.6rem, 0.5296rem + 0.3005vw, 0.8rem);
+            font-weight: 500;
+          }
+
+          &:last-child {
+            text-align: center;
+            text-transform: capitalize;
+
+            .status {
+              width: min-content;
+              font-size: 0.6rem;
+              font-weight: bold;
+              padding: 0.1875rem 0.5rem;
+              border-radius: 0.25rem;
+
+              &.pending {
+                color: var(--pr-clr-200);
+                border: 1px solid var(--pr-clr-200);
+                background-color: var(--pending-bg);
+              }
+
+              &.completed {
+                color: var(--pr-clr-270);
+                border: 1px solid var(--pr-clr-270);
+                background-color: var(--complete-bg);
+              }
+
+              &.accepted {
+                color: var(--pr-clr-300);
+                border: 1px solid var(--pr-clr-300);
+                background-color: var(--accepted-bg);
+              }
+
+              &.rejected {
+                color: var(--pr-clr-100);
+                border: 1px solid var(--pr-clr-100);
+                background-color: var(--rejected-bg);
+              }
+
+              &.missed {
+                color: var(--ntrl-clr-300);
+                border: 1px solid var(--ntrl-clr-300);
+                background-color: var(--missed-bg);
+              }
+
+              &.canceled {
+                color: var(--ntrl-clr-100);
+                border: 1px solid var(--canceled-bg);
+                background-color: var(--canceled-bg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
